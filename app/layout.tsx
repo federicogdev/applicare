@@ -1,8 +1,8 @@
 import { TwIndicator } from "@/components/tw-indicator";
-import "./globals.css";
-import type { Metadata } from "next";
-import { Inter, Poppins } from "next/font/google";
 import { cn } from "@/lib/utils";
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
