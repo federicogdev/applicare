@@ -8,6 +8,7 @@ import "../globals.css";
 import { Navbar } from "@/components/layout/navbar";
 import { theme } from "@/lib/clerk-theme";
 import { Separator } from "@/components/ui/separator";
+import { Bottombar } from "@/components/layout/bottombar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -43,7 +44,7 @@ export default function RootLayout({
             </section>
           </main>
 
-          {/* <Bottombar /> */}
+          <Bottombar />
           <TwIndicator />
         </body>
       </html>
