@@ -5,6 +5,9 @@ import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../globals.css";
+import { Navbar } from "@/components/layout/navbar";
+import { theme } from "@/lib/clerk-theme";
+import { Separator } from "@/components/ui/separator";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,14 +22,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ClerkProvider>
+    <ClerkProvider
+      appearance={{
+        variables: { colorPrimary: "#0ea5e9" },
+        elements: theme,
+      }}
+    >
       <html
         lang="en"
         className={cn(inter.className, "dark")}
         style={{ colorScheme: "dark" }}
       >
         <body className={`${inter.className} min-h-screen`}>
-          {/* <Navbar /> */}
+          <Navbar />
 
           <main className="flex flex-row">
             <Sidebar />
