@@ -2,13 +2,9 @@ import { TwIndicator } from "@/components/tw-indicator";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
+import { cn } from "@/lib/utils";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const poppins = Poppins({
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-poppins",
-});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,7 +17,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={[inter.variable, poppins.variable].join(" ")}>
+    <html
+      lang="en"
+      className={cn(inter.className, "dark")}
+      style={{ colorScheme: "dark" }}
+    >
       <head />
       <body className="min-h-screen antialiased">
         {children}
