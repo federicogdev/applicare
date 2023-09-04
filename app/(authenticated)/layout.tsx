@@ -9,6 +9,7 @@ import { Navbar } from "@/components/layout/navbar";
 import { theme } from "@/lib/clerk-theme";
 import { Separator } from "@/components/ui/separator";
 import { Bottombar } from "@/components/layout/bottombar";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -32,20 +33,22 @@ export default function RootLayout({
       <html
         lang="en"
         className={cn(inter.className, "dark")}
-        style={{ colorScheme: "dark" }}
+        // style={{ colorScheme: "dark" }}
       >
         <body className={`${inter.className} min-h-screen`}>
-          <Navbar />
+          <ThemeProvider>
+            <Navbar />
 
-          <main className="flex flex-row">
-            <Sidebar />
-            <section className="flex min-h-screen flex-1 flex-col items-center px-6 pb-10 pt-24 max-md:pb-32 sm:px-10">
-              <div className="w-full">{children}</div>
-            </section>
-          </main>
+            <main className="flex flex-row">
+              <Sidebar />
+              <section className="flex min-h-screen flex-1 flex-col items-center px-6 pb-10 pt-24 max-md:pb-32 sm:px-10">
+                <div className="w-full">{children}</div>
+              </section>
+            </main>
 
-          <Bottombar />
-          <TwIndicator />
+            <Bottombar />
+            <TwIndicator />
+          </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>
