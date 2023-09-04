@@ -36,7 +36,7 @@ export default function RootLayout({
         className={cn(inter.className, "dark")}
         style={{ colorScheme: "dark" }}
       >
-        <body className={`${inter.className} min-h-screen dark:bg-zinc-800`}>
+        <body className={`${inter.className} min-h-screen`}>
           <ThemeProvider>
             <Navbar />
 
