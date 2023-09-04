@@ -27,12 +27,15 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { toast } from "@/hooks/use-toast";
+import { useRouter } from "next/navigation";
+import { createJobApplication } from "@/actions/job-applications";
 
 type CreateFormProps = {
   userId: string;
 };
 
 export const CreateForm = ({ userId }: CreateFormProps) => {
+  const router = useRouter();
   const form = useForm<z.infer<typeof JobApplicationValidation>>({
     resolver: zodResolver(JobApplicationValidation),
     defaultValues: {
@@ -47,11 +50,24 @@ export const CreateForm = ({ userId }: CreateFormProps) => {
   });
 
   const onSubmit = async (data: z.infer<typeof JobApplicationValidation>) => {
-    alert(JSON.stringify(data));
-    toast({
-      title: "Scheduled: Catch up",
-      description: "Friday, February 10, 2023 at 5:57 PM",
-    });
+    try {
+      await createJobApplication(data);
+
+      form.reset();
+
+      toast({
+        title: "Success",
+        description: "Job application created successfully!",
+      });
+
+      router.refresh();
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Something went wrong. Please try again later",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
