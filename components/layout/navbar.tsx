@@ -4,9 +4,9 @@ import Link from "next/link";
 
 export const Navbar = () => {
   return (
-    <nav className="fixed top-0 z-30 flex w-full items-center justify-between px-6 py-3">
+    <nav className="fixed top-0 z-30 flex w-full items-center justify-between px-6 py-3 dark:bg-zinc-900">
       <Link href="/" className="flex items-center gap-4">
-        <Blinds size={30} />
+        <Blinds size={30} className="text-sky-400" />
         <p className="font-bold text-xl max-xs:hidden">Applicare</p>
       </Link>
 

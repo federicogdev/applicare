@@ -18,7 +18,7 @@ export const Sidebar = () => {
 
   const { userId } = useAuth();
   return (
-    <section className="custom-scrollbar sticky left-0 top-0 z-20 flex h-screen w-fit flex-col justify-between overflow-auto pb-5 pt-28 max-md:hidden">
+    <section className="custom-scrollbar sticky left-0 top-0 z-20 flex h-screen w-fit flex-col justify-between overflow-auto pb-5 pt-28 max-md:hidden dark:bg-zinc-900">
       <div className="flex w-full flex-1 flex-col gap-6 px-6">
         {links.map((link) => {
           const activeLink =
