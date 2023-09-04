@@ -33,7 +33,7 @@ export default function RootLayout({
       <html
         lang="en"
         className={cn(inter.className, "dark")}
-        style={{ colorScheme: "dark" }}
+        // style={{ colorScheme: "dark" }}
       >
         <body className={`${inter.className} min-h-screen`}>
           <ThemeProvider>
