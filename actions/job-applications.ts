@@ -10,7 +10,7 @@ export const createJobApplication = async (
   const user = await currentUser();
 
   if (!user) {
-    throw new Error("user not found");
+    throw new Error("User not found");
   }
 
   const { company, description, position, priority, status, type, location } =
