@@ -1,0 +1,64 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model JobApplication {
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  userId String
+
+  company String
+
+  location String
+  position String
+
+  status   JobStatus   @default(PENDING)
+  type     JobType     @default(FULL_TIME)
+  priority JobPriority @default(MEDIUM)
+
+  description String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  comments Comment[]
+}
+
+model Comment {
+  id               String @id @default(auto()) @map("_id") @db.ObjectId
+  userId           String
+  jobApplicationId String @db.ObjectId
+
+  text String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  jobApplication JobApplication @relation(fields: [jobApplicationId], references: [id], onDelete: Cascade)
+}
+
+enum JobStatus {
+  INTERVIEW
+  DECLINED
+  PENDING
+}
+
+enum JobType {
+  FULL_TIME
+  PART_TIME
+  REMOTE
+  INTERNSHIP
+}
+
+enum JobPriority {
+  LOW
+  MEDIUM
+  HIGH
+}
