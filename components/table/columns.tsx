@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
 import { priorities, statuses, types } from "./data";
 import { DataTableColumnHeader } from "@/components/table/data-table-column-header";
-// import { DataTableRowActions } from "@/components/table/data-table-row-actions";
+import { DataTableRowActions } from "@/components/table/data-table-row-actions";
 import { JobApplication } from "@prisma/client";
 
 export const columns: ColumnDef<JobApplication>[] = [
@@ -131,8 +131,8 @@ export const columns: ColumnDef<JobApplication>[] = [
       return value.includes(row.getValue(id));
     },
   },
-  //   {
-  //     id: "actions",
-  //     cell: ({ row }) => <DataTableRowActions row={row} />,
-  //   },
+  {
+    id: "actions",
+    cell: ({ row }) => <DataTableRowActions row={row} />,
+  },
 ];
