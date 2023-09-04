@@ -10,6 +10,7 @@ import { theme } from "@/lib/clerk-theme";
 import { Separator } from "@/components/ui/separator";
 import { Bottombar } from "@/components/layout/bottombar";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -48,6 +49,7 @@ export default function RootLayout({
 
             <Bottombar />
             <TwIndicator />
+            <Toaster />
           </ThemeProvider>
         </body>
       </html>
