@@ -1,7 +1,7 @@
+import { getMonthlyJobApplications } from "@/actions/job-applications";
 import { LatestJobApplicationsPanel } from "@/components/latest-job-applications-panel";
 import { prisma } from "@/lib/prisma";
-import { currentUser, useAuth } from "@clerk/nextjs";
-import React from "react";
+import { currentUser } from "@clerk/nextjs";
 
 const HomePage = async () => {
   const user = await currentUser();
@@ -13,6 +13,8 @@ const HomePage = async () => {
     take: 10,
     orderBy: { updatedAt: "desc" },
   });
+
+  const monthlyJobApplications = await getMonthlyJobApplications();
 
   return (
     <div className="flex-1 space-y-4">

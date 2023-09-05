@@ -12,20 +12,18 @@ export const LatestJobApplicationsPanel = ({
   latestJobApplications,
 }: LatestJobApplicationsPanelProps) => {
   return (
-    <div>
-      <Card className="col-span-1 ">
-        <CardHeader className="flex flex-row items-center justify-between">
-          <CardTitle className="text-lg">Recent Job Applications</CardTitle>
-          <CardTitle className="text-sky-500 underline">
-            <Link href="/jobs">See More</Link>
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          {latestJobApplications.map((jobApplication) => (
-            <LatestJobApplicationsCard jobApplication={jobApplication} />
-          ))}
-        </CardContent>
-      </Card>
-    </div>
+    <Card className="col-span-1 ">
+      <CardHeader className="flex flex-row items-center justify-between">
+        <CardTitle className="text-lg">Recent Job Applications</CardTitle>
+        <CardTitle className="text-sky-500 underline">
+          <Link href="/jobs">See More</Link>
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        {latestJobApplications.map((jobApplication) => (
+          <LatestJobApplicationsCard jobApplication={jobApplication} />
+        ))}
+      </CardContent>
+    </Card>
   );
 };
