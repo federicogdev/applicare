@@ -29,3 +29,13 @@ export const createJobApplication = async (
     },
   });
 };
+
+export const deleteJobApplication = async (id: string) => {
+  const user = await currentUser();
+
+  if (!user) {
+    throw new Error("User not found");
+  }
+
+  return await prisma.jobApplication.delete({ where: { id, userId: user.id } });
+};
