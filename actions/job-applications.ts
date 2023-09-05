@@ -3,6 +3,7 @@
 import { prisma } from "@/lib/prisma";
 import { JobApplicationValidationType } from "@/lib/validations/job-application.validation";
 import { currentUser } from "@clerk/nextjs";
+import { JobApplication } from "@prisma/client";
 
 export const createJobApplication = async (
   formData: JobApplicationValidationType
@@ -16,7 +17,7 @@ export const createJobApplication = async (
   const { company, description, position, priority, status, type, location } =
     formData;
 
-  return prisma.jobApplication.create({
+  await prisma.jobApplication.create({
     data: {
       userId: user.id,
       company,
@@ -37,5 +38,5 @@ export const deleteJobApplication = async (id: string) => {
     throw new Error("User not found");
   }
 
-  return await prisma.jobApplication.delete({ where: { id, userId: user.id } });
+  await prisma.jobApplication.delete({ where: { id, userId: user.id } });
 };
