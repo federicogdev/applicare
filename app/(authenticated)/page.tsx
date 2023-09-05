@@ -20,7 +20,6 @@ const HomePage = async () => {
     <div className="flex-1 space-y-4">
       {/* MonthlyCards */}
       <div className="grid lg:grid-cols-3 grid-cols-1 gap-4">
-        {/* Chart */}
         <LatestJobApplicationsPanel
           latestJobApplications={latestJobApplications}
         />
