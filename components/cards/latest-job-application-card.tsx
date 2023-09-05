@@ -18,7 +18,7 @@ export const renderIcon = (status: JobStatus) => {
 
     case "INTERVIEW":
       return (
-        <div className="bg-cyan-500 rounded-full p-2">
+        <div className="bg-orange-500 rounded-full p-2">
           <Clock1 className="text-white" size={22} />
         </div>
       );
@@ -32,7 +32,7 @@ export const renderIcon = (status: JobStatus) => {
 
     default:
       return (
-        <div className="bg-orange-500 rounded-full p-2">
+        <div className="bg-sky-500 rounded-full p-2">
           <AlignJustify className="text-white" size={22} />
         </div>
       );

@@ -48,9 +48,9 @@ export const MonthlyJobApplicationCard = ({
 
         <p
           className={clsx(
-            "text-xs text-muted-foreground",
+            "text-xs text-muted-foreground mt-1",
             difference >= 0 || percentageChange >= 0
-              ? "text-emerald-600"
+              ? "text-sky-500"
               : "text-red-500"
           )}
         >
