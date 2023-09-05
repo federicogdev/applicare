@@ -69,14 +69,11 @@ export function DataTable<TData, TValue>({
   return (
     <div className="space-y-4">
       <DataTableToolbar table={table} />
-      <div className="rounded-md border dark:border-neutral-600">
+      <div className="rounded-md border dark:border-zinc-800">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow
-                key={headerGroup.id}
-                className="dark:border-neutral-600"
-              >
+              <TableRow key={headerGroup.id} className="dark:border-zinc-800">
                 {headerGroup.headers.map((header) => {
                   return (
                     <TableHead key={header.id}>
@@ -98,7 +95,7 @@ export function DataTable<TData, TValue>({
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
-                  className="dark:border-neutral-600"
+                  className="dark:border-zinc-800"
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
@@ -111,10 +108,10 @@ export function DataTable<TData, TValue>({
                 </TableRow>
               ))
             ) : (
-              <TableRow className="dark:border-neutral-600">
+              <TableRow className="dark:border-zinc-800">
                 <TableCell
                   colSpan={columns.length}
-                  className="h-24 text-center dark:border-neutral-600"
+                  className="h-24 text-center dark:border-zinc-800"
                 >
                   No results.
                 </TableCell>
