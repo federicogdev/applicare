@@ -1,4 +1,7 @@
-import { getMonthlyJobApplications } from "@/actions/job-applications";
+import {
+  getMonthlyJobApplications,
+  getWeeklyJobApplications,
+} from "@/actions/job-applications";
 import { MonthlyJobApplicationCard } from "@/components/cards/monthly-job-application-card";
 import { LatestJobApplicationsPanel } from "@/components/latest-job-applications-panel";
 import { MonthlyJobApplicationsPanel } from "@/components/monthly-job-applications-panel";
@@ -18,12 +21,15 @@ const HomePage = async () => {
 
   const monthlyJobApplications = await getMonthlyJobApplications();
 
+  const weeklyJobApplications = await getWeeklyJobApplications();
+
   return (
     <div className="flex-1 space-y-4">
       <MonthlyJobApplicationsPanel
         monthlyApplications={monthlyJobApplications}
       />
       <div className="grid lg:grid-cols-3 grid-cols-1 gap-4">
+        {JSON.stringify(weeklyJobApplications)}
         <LatestJobApplicationsPanel
           latestJobApplications={latestJobApplications}
         />
