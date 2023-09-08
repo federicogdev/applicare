@@ -12,7 +12,7 @@ export const LatestJobApplicationsPanel = ({
   latestJobApplications,
 }: LatestJobApplicationsPanelProps) => {
   return (
-    <Card className="col-span-1 ">
+    <Card className="col-span-1 lg:overflow-scroll lg:h-[65vh]">
       <CardHeader className="flex flex-row items-center justify-between">
         <CardTitle className="text-lg">Recent Job Applications</CardTitle>
         <CardTitle className="text-sky-500 underline">

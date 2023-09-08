@@ -180,10 +180,6 @@ export const getWeeklyJobApplications = async (): Promise<IJobsWeekly[]> => {
     const jobs = await prisma.jobApplication.findMany({
       where: {
         userId: user.id,
-        createdAt: {
-          gte: oneWeekAgo,
-          lte: today,
-        },
       },
 
       orderBy: { createdAt: "desc" },
@@ -224,6 +220,7 @@ export const getWeeklyJobApplications = async (): Promise<IJobsWeekly[]> => {
         interview: jobCounts.interview || 0,
       };
     });
+
     return jobsByDays;
   } catch (error: any) {
     throw new Error(`Failed to fetch job applications: ${error.message}`);
