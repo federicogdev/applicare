@@ -8,6 +8,7 @@ import { priorities, statuses, types } from "./data";
 import { DataTableColumnHeader } from "@/components/table/data-table-column-header";
 import { DataTableRowActions } from "@/components/table/data-table-row-actions";
 import { JobApplication } from "@prisma/client";
+import { format } from "date-fns";
 
 export const columns: ColumnDef<JobApplication>[] = [
   {
@@ -124,6 +125,25 @@ export const columns: ColumnDef<JobApplication>[] = [
             <priority.icon className="mr-2 h-4 w-4 text-muted-foreground" />
           )}
           <span>{priority.label}</span>
+        </div>
+      );
+    },
+    filterFn: (row, id, value) => {
+      return value.includes(row.getValue(id));
+    },
+  },
+
+  {
+    accessorKey: "createdAt",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Date" />
+    ),
+    cell: ({ row }) => {
+      const createdAt = row.original.createdAt;
+
+      return (
+        <div className="flex w-[100px] items-center">
+          <span>{format(createdAt, "dd MMM yyyy")}</span>
         </div>
       );
     },

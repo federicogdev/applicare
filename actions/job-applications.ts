@@ -188,7 +188,7 @@ export const getWeeklyJobApplications = async (): Promise<IJobsWeekly[]> => {
 
     const jobsByDay: IJobsByDay = {};
     for (const job of jobs) {
-      const day = format(job.createdAt, "dd-MM-yyyy");
+      const day = format(job.createdAt, "dd MMM yyyy");
 
       if (!jobsByDay[day]) {
         jobsByDay[day] = { pending: 0, declined: 0, interview: 0 };
@@ -208,7 +208,7 @@ export const getWeeklyJobApplications = async (): Promise<IJobsWeekly[]> => {
     }
 
     const jobsByDays: IJobsWeekly[] = dates.map((date) => {
-      const day = format(date, "dd-MM-yyyy");
+      const day = format(date, "dd MMM yyyy");
       const jobCounts = jobsByDay[day] || {
         pending: 0,
         declined: 0,
