@@ -43,7 +43,7 @@ export const createJobApplication = async (
   revalidatePath("/");
 };
 
-export const deleteJobApplication = async (id: string) => {
+export const deleteJobApplication = async (id: string, path?: string) => {
   const user = await currentUser();
 
   if (!user) {
@@ -51,6 +51,8 @@ export const deleteJobApplication = async (id: string) => {
   }
 
   await prisma.jobApplication.delete({ where: { id, userId: user.id } });
+
+  if (path) revalidatePath(path);
 };
 
 export const getMonthlyJobApplications = async (): Promise<IJobMonthly> => {
