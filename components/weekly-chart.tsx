@@ -29,7 +29,7 @@ export const WeeklyChart = ({ data }: WeeklyChartProps) => {
   return (
     <Card className="w-full lg:col-span-2 relative lg:h-[65vh] h-[65vh]">
       <CardHeader className="flex flex-row justify-between items-center">
-        <CardTitle className="font-normal mr-1">Weekly Overview</CardTitle>
+        <CardTitle className="font-bold mr-1 ">Weekly Overview</CardTitle>
       </CardHeader>
       <CardContent className="pl-2 lg:h-[60vh] h-[60vh]">
         <ResponsiveContainer width="100%" height="100%">

@@ -4,15 +4,14 @@ import { prisma } from "@/lib/prisma";
 import { JobApplicationValidationType } from "@/lib/validations/job-application.validation";
 import { currentUser } from "@clerk/nextjs";
 import {
-  startOfMonth,
-  subMonths,
   eachDayOfInterval,
   format,
-  isWithinInterval,
-  parseISO,
   startOfDay,
+  startOfMonth,
   subDays,
+  subMonths,
 } from "date-fns";
+import { revalidatePath } from "next/cache";
 
 interface IJobMonthly {
   declinedJobsCurrentMonth: number;
@@ -64,6 +63,8 @@ export const createJobApplication = async (
       type: type,
     },
   });
+
+  revalidatePath("/");
 };
 
 export const deleteJobApplication = async (id: string) => {
