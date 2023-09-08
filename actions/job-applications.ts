@@ -235,7 +235,8 @@ export const getJobApplicationById = async (
 
 export const editJobApplication = async (
   id: string,
-  formData: JobApplicationValidationType
+  formData: JobApplicationValidationType,
+  path: string
 ) => {
   const user = await currentUser();
 
@@ -259,7 +260,7 @@ export const editJobApplication = async (
     },
   });
 
-  // revalidatePath("/");
+  revalidatePath(path);
 };
 
 export const createComment = async (jobApplicationId: string, text: string) => {

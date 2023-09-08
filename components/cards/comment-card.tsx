@@ -37,7 +37,9 @@ export const CommentCard = async ({ comment }: CommentCardProps) => {
       <div className="flex items-center">
         <div className="h-10 w-10" />
         <div className="ml-4 space-y-1">
-          <p className="text-sm text-muted-foreground">{comment.text}</p>
+          <p className="text-sm text-neutral-600 dark:text-neutral-300">
+            {comment.text}
+          </p>
         </div>
       </div>
     </div>
