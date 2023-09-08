@@ -1,10 +1,9 @@
 "use client";
-import React from "react";
 
+import { JobApplicationValidation } from "@/lib/validations/job-application.validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { JobApplicationValidation } from "@/lib/validations/job-application.validation";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -18,6 +17,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
+import { createJobApplication } from "@/actions/job-applications";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import {
   Select,
@@ -28,7 +28,6 @@ import {
 } from "@/components/ui/select";
 import { toast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
-import { createJobApplication } from "@/actions/job-applications";
 
 type CreateFormProps = {
   userId: string;
@@ -60,7 +59,7 @@ export const CreateForm = ({ userId }: CreateFormProps) => {
         description: "Job application created successfully!",
       });
 
-      router.refresh();
+      router.push("/");
     } catch (error) {
       toast({
         title: "Error",

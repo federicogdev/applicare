@@ -15,7 +15,7 @@ const links = [
 export const Bottombar = () => {
   const pathname = usePathname();
   return (
-    <section className="fixed bottom-0 z-10 w-full rounded-t-3xl p-4  xs:px-7 md:hidden">
+    <section className="fixed bottom-0 z-10 w-full rounded-t-3xl p-4  xs:px-7 md:hidden bg-slate-100 dark:bg-zinc-800">
       <div className="flex items-center justify-around gap-3 xs:gap-5">
         {links.map((link) => {
           const isActive =
