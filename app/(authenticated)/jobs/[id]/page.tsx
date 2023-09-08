@@ -1,7 +1,7 @@
 import { getJobApplicationById } from "@/actions/job-applications";
+import { Comments } from "@/components/comments";
 import { CommentForm } from "@/components/forms/comment-form";
 import { currentUser } from "@clerk/nextjs";
-import React from "react";
 
 const JobApplicationDetailsPage = async ({
   params,
@@ -15,9 +15,10 @@ const JobApplicationDetailsPage = async ({
 
   return (
     <>
-      <div className="">
+      <div className="space-y-8">
         <h1 className="font-bold text-xl">{JSON.stringify(jobApplication)}</h1>
         <CommentForm jobApplicationId={jobApplication.id} />
+        <Comments comments={jobApplication.comments} />
       </div>
     </>
   );

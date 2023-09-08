@@ -4,12 +4,6 @@ import { prisma } from "@/lib/prisma";
 import { JobApplicationValidationType } from "@/lib/validations/job-application.validation";
 import { currentUser } from "@clerk/nextjs";
 import {
-  JobApplication,
-  JobPriority,
-  JobStatus,
-  JobType,
-} from "@prisma/client";
-import {
   eachDayOfInterval,
   format,
   startOfDay,
@@ -19,45 +13,7 @@ import {
 } from "date-fns";
 import { revalidatePath } from "next/cache";
 
-interface IJobMonthly {
-  declinedJobsCurrentMonth: number;
-  declinedJobsPastMonth: number;
-  pendingJobsPastMonth: number;
-  pendingJobsCurrentMonth: number;
-  interviewJobsCurrentMonth: number;
-  interviewJobsPastMonth: number;
-  totalJobsCurrentMonth: number;
-  totalJobsPastMonth: number;
-}
-
-interface IJobsByDay {
-  [day: string]: {
-    pending: number;
-    declined: number;
-    interview: number;
-  };
-}
-
-interface IJobsWeekly {
-  date: string;
-  pending: number;
-  declined: number;
-  interview: number;
-}
-
-interface IJobApplication {
-  id: string;
-  userId: string;
-  company: string;
-  location: string;
-  position: string;
-  status: JobStatus;
-  type: JobType;
-  priority: JobPriority;
-  description: string;
-  createdAt: Date;
-  updatedAt: Date;
-}
+import { IJobApplication, IJobMonthly, IJobsByDay, IJobsWeekly } from "@/types";
 
 export const createJobApplication = async (
   formData: JobApplicationValidationType
@@ -250,7 +206,7 @@ export const getWeeklyJobApplications = async (): Promise<IJobsWeekly[]> => {
 
 export const getJobApplicationById = async (
   id: string
-): Promise<JobApplication> => {
+): Promise<IJobApplication> => {
   const user = await currentUser();
 
   if (!user) {
@@ -260,7 +216,9 @@ export const getJobApplicationById = async (
   try {
     const jobApplication = await prisma.jobApplication.findUnique({
       where: { id, userId: user.id },
-      include: { comments: { select: { text: true, createdAt: true } } },
+      include: {
+        comments: { select: { text: true, createdAt: true, userId: true } },
+      },
     });
 
     if (user.id !== jobApplication?.userId) {
