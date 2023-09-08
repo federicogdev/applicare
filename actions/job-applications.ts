@@ -4,6 +4,12 @@ import { prisma } from "@/lib/prisma";
 import { JobApplicationValidationType } from "@/lib/validations/job-application.validation";
 import { currentUser } from "@clerk/nextjs";
 import {
+  JobApplication,
+  JobPriority,
+  JobStatus,
+  JobType,
+} from "@prisma/client";
+import {
   eachDayOfInterval,
   format,
   startOfDay,
@@ -39,6 +45,20 @@ interface IJobsWeekly {
   interview: number;
 }
 
+interface IJobApplication {
+  id: string;
+  userId: string;
+  company: string;
+  location: string;
+  position: string;
+  status: JobStatus;
+  type: JobType;
+  priority: JobPriority;
+  description: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
 export const createJobApplication = async (
   formData: JobApplicationValidationType
 ) => {
@@ -58,9 +78,9 @@ export const createJobApplication = async (
       description,
       position,
       location,
-      priority: priority,
-      status: status,
-      type: type,
+      priority,
+      status,
+      type,
     },
   });
 
@@ -226,4 +246,85 @@ export const getWeeklyJobApplications = async (): Promise<IJobsWeekly[]> => {
   } catch (error: any) {
     throw new Error(`Failed to fetch job applications: ${error.message}`);
   }
+};
+
+export const getJobApplicationById = async (
+  id: string
+): Promise<JobApplication> => {
+  const user = await currentUser();
+
+  if (!user) {
+    throw new Error("User not found");
+  }
+
+  try {
+    const jobApplication = await prisma.jobApplication.findUnique({
+      where: { id, userId: user.id },
+      include: { comments: { select: { text: true, createdAt: true } } },
+    });
+
+    if (user.id !== jobApplication?.userId) {
+      throw new Error(`Failed to fetch ${id} application`);
+    }
+
+    return jobApplication;
+  } catch (error: any) {
+    throw new Error(
+      `Failed to fetch ${id} Job application with: ${error.message}`
+    );
+  }
+};
+
+export const editJobApplication = async (
+  id: string,
+  formData: JobApplicationValidationType
+) => {
+  const user = await currentUser();
+
+  if (!user) {
+    throw new Error("User not found");
+  }
+
+  const { company, description, position, priority, status, type, location } =
+    formData;
+
+  await prisma.jobApplication.update({
+    where: { id: id, userId: user.id },
+    data: {
+      company,
+      description,
+      position,
+      location,
+      priority,
+      status,
+      type,
+    },
+  });
+
+  // revalidatePath("/");
+};
+
+export const createComment = async (jobApplicationId: string, text: string) => {
+  const user = await currentUser();
+
+  if (!user) {
+    throw new Error("User not found");
+  }
+
+  const jobApplication = await prisma.jobApplication.findUnique({
+    where: { id: jobApplicationId },
+  });
+
+  if (!jobApplication) {
+    throw new Error("Job application not found");
+  }
+
+  // Create the comment
+  const comment = await prisma.comment.create({
+    data: {
+      userId: user.id,
+      jobApplicationId,
+      text,
+    },
+  });
 };

@@ -1,3 +1,5 @@
+import { getJobApplicationById } from "@/actions/job-applications";
+import { CommentForm } from "@/components/forms/comment-form";
 import { currentUser } from "@clerk/nextjs";
 import React from "react";
 
@@ -9,10 +11,13 @@ const JobApplicationDetailsPage = async ({
   const user = await currentUser();
   if (!user) return null;
 
+  const jobApplication = await getJobApplicationById(params.id);
+
   return (
     <>
-      <div className="flex max-md:flex-col justify-between md:items-center">
-        <h1 className="font-bold text-xl">{params.id}</h1>
+      <div className="">
+        <h1 className="font-bold text-xl">{JSON.stringify(jobApplication)}</h1>
+        <CommentForm jobApplicationId={jobApplication.id} />
       </div>
     </>
   );
