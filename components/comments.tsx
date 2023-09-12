@@ -8,8 +8,8 @@ type CommentsProps = {
 export const Comments = ({ comments }: CommentsProps) => {
   return (
     <div className="space-y-4">
-      {comments.map((comment) => (
-        <CommentCard key={comment.id} comment={comment} />
+      {comments.map((comment, index) => (
+        <CommentCard key={index} comment={comment} />
       ))}
     </div>
   );
