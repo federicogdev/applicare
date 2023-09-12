@@ -21,7 +21,10 @@ export const LatestJobApplicationsPanel = ({
       </CardHeader>
       <CardContent className="space-y-4">
         {latestJobApplications.map((jobApplication) => (
-          <LatestJobApplicationsCard jobApplication={jobApplication} />
+          <LatestJobApplicationsCard
+            key={jobApplication.id}
+            jobApplication={jobApplication}
+          />
         ))}
       </CardContent>
     </Card>

@@ -9,7 +9,7 @@ export const Comments = ({ comments }: CommentsProps) => {
   return (
     <div className="space-y-4">
       {comments.map((comment) => (
-        <CommentCard comment={comment} />
+        <CommentCard key={comment.id} comment={comment} />
       ))}
     </div>
   );

@@ -20,7 +20,7 @@ const AllApplicationsPage = async () => {
           <div>
             <h2 className="text-2xl font-bold tracking-tight">Welcome back!</h2>
             <p className="text-neutral-600 dark:text-neutral-300">
-              Here's the list of all your job applications
+              Here is the list of all your job applications
             </p>
           </div>
         </div>
