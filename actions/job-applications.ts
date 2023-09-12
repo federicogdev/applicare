@@ -13,31 +13,7 @@ import {
 } from "date-fns";
 import { revalidatePath } from "next/cache";
 
-interface IJobMonthly {
-  declinedJobsCurrentMonth: number;
-  declinedJobsPastMonth: number;
-  pendingJobsPastMonth: number;
-  pendingJobsCurrentMonth: number;
-  interviewJobsCurrentMonth: number;
-  interviewJobsPastMonth: number;
-  totalJobsCurrentMonth: number;
-  totalJobsPastMonth: number;
-}
-
-interface IJobsByDay {
-  [day: string]: {
-    pending: number;
-    declined: number;
-    interview: number;
-  };
-}
-
-interface IJobsWeekly {
-  date: string;
-  pending: number;
-  declined: number;
-  interview: number;
-}
+import { IJobApplication, IJobMonthly, IJobsByDay, IJobsWeekly } from "@/types";
 
 export const createJobApplication = async (
   formData: JobApplicationValidationType
@@ -58,16 +34,16 @@ export const createJobApplication = async (
       description,
       position,
       location,
-      priority: priority,
-      status: status,
-      type: type,
+      priority,
+      status,
+      type,
     },
   });
 
   revalidatePath("/");
 };
 
-export const deleteJobApplication = async (id: string) => {
+export const deleteJobApplication = async (id: string, path?: string) => {
   const user = await currentUser();
 
   if (!user) {
@@ -75,6 +51,8 @@ export const deleteJobApplication = async (id: string) => {
   }
 
   await prisma.jobApplication.delete({ where: { id, userId: user.id } });
+
+  if (path) revalidatePath(path);
 };
 
 export const getMonthlyJobApplications = async (): Promise<IJobMonthly> => {
@@ -226,4 +204,88 @@ export const getWeeklyJobApplications = async (): Promise<IJobsWeekly[]> => {
   } catch (error: any) {
     throw new Error(`Failed to fetch job applications: ${error.message}`);
   }
+};
+
+export const getJobApplicationById = async (
+  id: string
+): Promise<IJobApplication> => {
+  const user = await currentUser();
+
+  if (!user) {
+    throw new Error("User not found");
+  }
+
+  try {
+    const jobApplication = await prisma.jobApplication.findUnique({
+      where: { id, userId: user.id },
+      include: {
+        comments: { select: { text: true, createdAt: true, userId: true } },
+      },
+    });
+
+    if (user.id !== jobApplication?.userId) {
+      throw new Error(`Failed to fetch ${id} application`);
+    }
+
+    return jobApplication;
+  } catch (error: any) {
+    throw new Error(
+      `Failed to fetch ${id} Job application with: ${error.message}`
+    );
+  }
+};
+
+export const editJobApplication = async (
+  id: string,
+  formData: JobApplicationValidationType,
+  path: string
+) => {
+  const user = await currentUser();
+
+  if (!user) {
+    throw new Error("User not found");
+  }
+
+  const { company, description, position, priority, status, type, location } =
+    formData;
+
+  await prisma.jobApplication.update({
+    where: { id: id, userId: user.id },
+    data: {
+      company,
+      description,
+      position,
+      location,
+      priority,
+      status,
+      type,
+    },
+  });
+
+  revalidatePath(path);
+};
+
+export const createComment = async (jobApplicationId: string, text: string) => {
+  const user = await currentUser();
+
+  if (!user) {
+    throw new Error("User not found");
+  }
+
+  const jobApplication = await prisma.jobApplication.findUnique({
+    where: { id: jobApplicationId },
+  });
+
+  if (!jobApplication) {
+    throw new Error("Job application not found");
+  }
+
+  // Create the comment
+  const comment = await prisma.comment.create({
+    data: {
+      userId: user.id,
+      jobApplicationId,
+      text,
+    },
+  });
 };

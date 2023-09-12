@@ -17,7 +17,10 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
-import { createJobApplication } from "@/actions/job-applications";
+import {
+  createJobApplication,
+  editJobApplication,
+} from "@/actions/job-applications";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import {
   Select,
@@ -27,39 +30,40 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { toast } from "@/hooks/use-toast";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { IJobApplication } from "@/types";
 
-type CreateFormProps = {
-  userId: string;
+type EditFormProps = {
+  jobApplication: IJobApplication;
 };
 
-export const CreateForm = ({ userId }: CreateFormProps) => {
+export const EditForm = ({ jobApplication }: EditFormProps) => {
   const router = useRouter();
+  const pathname = usePathname();
   const form = useForm<z.infer<typeof JobApplicationValidation>>({
     resolver: zodResolver(JobApplicationValidation),
     defaultValues: {
-      company: "",
-      location: "",
-      position: "",
-      priority: "HIGH",
-      status: "PENDING",
-      description: "",
-      type: "FULL_TIME",
+      company: jobApplication.company,
+      location: jobApplication.location,
+      position: jobApplication.position,
+      priority: jobApplication.priority,
+      status: jobApplication.status,
+      description: jobApplication.description,
+      type: jobApplication.type,
     },
   });
 
   const onSubmit = async (data: z.infer<typeof JobApplicationValidation>) => {
     try {
-      await createJobApplication(data);
+      await editJobApplication(jobApplication.id, data, pathname);
 
-      form.reset();
+      // form.reset();
+      router.push("/jobs");
 
       toast({
         title: "Success",
-        description: "Job application created successfully!",
+        description: "Job application edited successfully!",
       });
-
-      router.push("/");
     } catch (error) {
       toast({
         title: "Error",
@@ -238,7 +242,7 @@ export const CreateForm = ({ userId }: CreateFormProps) => {
           </div>
         </div>
         <Button type="submit" variant="accent">
-          Submit
+          Edit
         </Button>
       </form>
     </Form>

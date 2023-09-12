@@ -9,7 +9,7 @@ const CreatePage = async () => {
   return (
     <>
       <h1 className="font-bold text-2xl">Create new Job Application</h1>
-      <p className="text-muted-foreground">
+      <p className="text-neutral-600 dark:text-neutral-300">
         Fill out the form below to add a new Job Application to your collection
       </p>
       <CreateForm userId={user.id} />
