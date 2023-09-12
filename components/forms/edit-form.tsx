@@ -79,7 +79,7 @@ export const EditForm = ({ jobApplication }: EditFormProps) => {
         className="mt-20 flex flex-col justify-start gap-8"
         onSubmit={form.handleSubmit(onSubmit)}
       >
-        <div className="flex gap-4">
+        <div className="max-md:flex-col flex gap-4">
           <FormField
             control={form.control}
             name="position"
@@ -134,7 +134,7 @@ export const EditForm = ({ jobApplication }: EditFormProps) => {
               </FormItem>
             )}
           />
-          <div className="flex w-full md:flex-col gap-3">
+          <div className="flex w-full flex-col gap-4">
             <FormField
               control={form.control}
               name="location"

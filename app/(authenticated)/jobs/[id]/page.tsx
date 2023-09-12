@@ -3,9 +3,7 @@ import { Comments } from "@/components/comments";
 import { DeleteButton } from "@/components/delete-button";
 import { CommentForm } from "@/components/forms/comment-form";
 import { EditForm } from "@/components/forms/edit-form";
-import { Button } from "@/components/ui/button";
 import { currentUser } from "@clerk/nextjs";
-import { TrashIcon } from "@radix-ui/react-icons";
 import { format } from "date-fns";
 
 const JobApplicationDetailsPage = async ({
@@ -23,12 +21,10 @@ const JobApplicationDetailsPage = async ({
       <div className="space-y-8">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="font-bold text-2xl">
-              Here's your job application with iID {params.id}
-            </h1>
+            <h1 className="font-bold text-2xl">ID: {params.id}</h1>
             <p className="text-neutral-600 dark:text-neutral-300">
               Last updated:{" "}
-              {format(jobApplication.updatedAt, "dd MMM yyyy, HH:MM:SS")}
+              <b>{format(jobApplication.updatedAt, "dd MMM yyyy, HH:MM:SS")}</b>
             </p>
           </div>
 
