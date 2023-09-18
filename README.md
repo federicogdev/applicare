@@ -1,67 +1,131 @@
-Applicare
 
-Applicare is a project that aims to help users keep track of their job application and monitor them in a dashboard like environment. This README file provides an overview of the project's folder structure.
-Folder Structure
 
-The project's folder structure is organized as follows:
 
-applicare/
-├── actions/
-├── app/
-├── components/
-├── hooks/
-├── lib/
-├── prisma/
-├── public/
-├── types/
-├── .gitignore
-├── LICENSE
-└── README.md
 
-    actions/: This folder contains server actions, such as API calls or data fetching functions.
+<!-- PROJECT LOGO -->
+<br />
+<div>
 
-    app/: The app directory holds the default Next.js 13 application files.
 
-    components/: This folder includes reusable UI components used throughout the application.
+  <h1>Applicare</h1>
 
-    hooks/: The hooks directory contains custom hooks that encapsulate specific functionality or logic.
+  <p>
+Welcome to Applicare, a web application built with Next.js 13 that aims to simplify and streamline the job application process. Whether you're a seasoned professional or just starting your career journey, Applicare provides you with a comprehensive dashboard to keep track of all your job applications in one place.    <br />
+    
+  </p>
+</div>
 
-    lib/: The lib directory houses utility or miscellaneous modules used across the project.
 
-    prisma/: The prisma folder is the default Prisma folder and contains the Prisma schema file.
 
-    public/: The public folder is the default public folder for static assets used in the application.
 
-    types/: The types directory includes type definitions and interfaces for type safety.
 
-    .gitignore: This file specifies the files and directories to be ignored by Git version control.
 
-    LICENSE: The license file specifying the project's open-source license.
+<!-- ABOUT THE PROJECT -->
 
-    README.md: The file you are currently reading, providing an overview of the project and its folder structure.
+## Overview
 
-Getting Started
+Searching for a new job can be a daunting and time-consuming task, especially when you have multiple applications in progress. Applicare is designed to alleviate the stress by offering an intuitive and organized environment where you can manage your job applications efficiently.
 
-To get started with the project, follow these instructions:
 
-    Clone the repository: git clone https://github.com/federicogdev/applicare.git
-    Install the dependencies: npm install
-    Configure the necessary environment variables.
-    Start the application: npm start
-    Access the application in your browser at http://localhost:3000.
 
-Contributing
 
-If you would like to contribute to this project, please follow these guidelines:
+### Built With
 
-    Fork the repository and clone it to your local machine.
-    Create a new branch for your feature or bug fix: git checkout -b my-feature
-    Commit your changes: git commit -m "Add new feature"
-    Push to the branch: git push origin my-feature
-    Submit a pull request detailing your changes and their purpose.
+This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 
-License
+* [![Next][Next.js]][https://nextjs.org/]
 
-This project is licensed under the MIT License.
 
-Feel free to customize this README further based on your project's specific requirements.
+
+
+
+<!-- GETTING STARTED -->
+
+## Getting Started
+
+This is an example of how you may give instructions on setting up your project locally.
+To get a local copy up and running follow these simple example steps.
+
+### Prerequisites
+
+This is an example of how to list things you need to use the software and how to install them.
+* npm
+  ```sh
+  npm install npm@latest -g
+  ```
+
+### Installation
+
+_Follow this steps to get your application running._
+
+1. Register at [https://www.mongodb.com/cloud/atlas/register](https://www.mongodb.com/cloud/atlas/register) and follow their instruction.
+2. Setup a free Clerk account and get their connection string at [https://clerk.com/](https://clerk.com/)
+3. Clone the repo
+   ```sh
+   git clone https://github.com/federicogdev/applicare.git
+   ```
+4. Install NPM packages
+   ```sh
+   npm install
+   ```
+6. Create a `.env` in the root folder of the project
+   ```
+   NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+   NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+   NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/
+   NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/
+   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY= ************* Replace with your Clerk Publishable Key
+   CLERK_SECRET_KEY=************* Replace with your Clerk Secret Key
+   DATABASE_URL= ************* Replace with your MongoDB Connection String
+   ```
+
+
+<!-- ROADMAP -->
+
+### Roadmap
+
+- [x] Add README
+- [x] Add support for theming
+- [ ] Add table responsiveness
+- [ ] Add "components" document to easily copy & paste sections of the readme
+
+
+
+
+
+
+<!-- CONTRIBUTING -->
+
+### Contributing
+
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+Don't forget to give the project a star! Thanks again!
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+
+
+
+<!-- LICENSE -->
+
+### License
+
+Distributed under the MIT License. See `LICENSE.txt` for more information.
+
+
+
+
+
+
+
+
+
+
+
+
