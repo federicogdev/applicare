@@ -41,21 +41,6 @@ This section lists the major frameworks/libraries used in this project.
 
 
 
-### Project Structure
-The folder structure of this app is explained below:
-
-| Name | Description |
-| ------------------------ | --------------------------------------------------------------------------------------------- |
-| **node_modules**         | Contains all  npm dependencies                                                            |
-| **actions**      | Server actions
-| **app**      | Next.js 13 App Directory containing Routes and API
-| **components**           | Contains all components grouped by subfolders|
-| **hooks**           | Custom hooks |
-| **lib**         | Utility and miscellaneous                                                                |
-| **prisma**         | Prisma default folder for schema                                                              |
-| **types**         | Typescript folder for types and interfaces                                                              |
-| package.json             | Contains npm dependencies as well as build scripts   |
-
 
 
 
@@ -63,12 +48,9 @@ The folder structure of this app is explained below:
 
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
 * npm
   ```sh
   npm install npm@latest -g
@@ -98,6 +80,24 @@ _Follow this steps to get your application running._
    CLERK_SECRET_KEY=************* Replace with your Clerk Secret Key
    DATABASE_URL= ************* Replace with your MongoDB Connection String
    ```
+
+### Project Structure
+The folder structure of this app is explained below:
+
+| Name | Description |
+| ------------------------ | --------------------------------------------------------------------------------------------- |
+| **node_modules**         | Contains all  npm dependencies                                                            |
+| **actions**      | Server actions
+| **app**      | Next.js 13 App Directory containing Routes and API
+| **components**           | Contains all components grouped by subfolders|
+| **hooks**           | Custom hooks |
+| **lib**         | Utility and miscellaneous                                                                |
+| **prisma**         | Prisma default folder for schema                                                              |
+| **types**         | Typescript folder for types and interfaces                                                              |
+| package.json             | Contains npm dependencies as well as build scripts   |
+
+
+
 
 
 <!-- ROADMAP -->
