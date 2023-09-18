@@ -35,6 +35,8 @@ This section should list any major frameworks/libraries used to bootstrap your p
 
 * [![Next][Next.js]][Next-url]
 * [![Prisma][Prisma]][Prisma-url]
+* [![Vercel][Vercel]][Vercel-url]
+* [![MongoDB][MongoDB]][MongoDB-url]
 
 
 
@@ -125,7 +127,10 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 [Next-url]: https://nextjs.org/
 [Prisma]: https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white
 [Prisma-url]: https://www.prisma.io/
-
+[Vercel]: https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white
+[Vercel-url]: https://vercel.com/
+[MongoDB]: https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white
+[MongoDB-url]: https://www.mongodb.com
 
 
 
