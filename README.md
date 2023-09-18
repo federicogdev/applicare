@@ -31,12 +31,30 @@ Searching for a new job can be a daunting and time-consuming task, especially wh
 
 ### Built With
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
+This section lists the major frameworks/libraries used in this project.
+
 
 * [![Next][Next.js]][Next-url]
 * [![Prisma][Prisma]][Prisma-url]
 * [![Vercel][Vercel]][Vercel-url]
 * [![MongoDB][MongoDB]][MongoDB-url]
+
+
+
+### Project Structure
+The folder structure of this app is explained below:
+
+| Name | Description |
+| ------------------------ | --------------------------------------------------------------------------------------------- |
+| **node_modules**         | Contains all  npm dependencies                                                            |
+| **actions**      | Server actions
+| **app**      | Next.js 13 App Directory containing Routes and API
+| **components**           | Contains all components grouped by subfolders|
+| **hooks**           | Custom hooks |
+| **lib**         | Utility and miscellaneous                                                                |
+| **prisma**         | Prisma default folder for schema                                                              |
+| **types**         | Typescript folder for types and interfaces                                                              |
+| package.json             | Contains npm dependencies as well as build scripts   |
 
 
 
