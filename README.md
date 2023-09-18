@@ -33,8 +33,7 @@ Searching for a new job can be a daunting and time-consuming task, especially wh
 
 This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 
-* [![Next][Next.js]][https://nextjs.org/]
-
+* [![Next][Next.js]][Next-url]
 
 
 
@@ -122,7 +121,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
-
+[Next-url]: https://nextjs.org/
 
 
 
